@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<ProductServiceResponseDto> getAllProducts() {
+    public List<ProductServiceResponseDto> getProducts() {
         return null;
     }
 
