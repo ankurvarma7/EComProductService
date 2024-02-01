@@ -1,5 +1,6 @@
 package com.projects.EComProductService.client;
 
+import com.projects.EComProductService.dtos.FakeProductServiceRequestDto;
 import com.projects.EComProductService.dtos.FakeProductServiceResponseDto;
 import com.projects.EComProductService.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,5 +44,12 @@ public class FakeStoreClient {
             throw new ProductNotFoundException("No products.");
         }
         return List.of(response.getBody());
+    }
+
+    public FakeProductServiceResponseDto addProduct(FakeProductServiceRequestDto fakeProductServiceRequestDto){
+        String url=fakeStoreApiUrl+fakeStoreProductPath;
+        RestTemplate restTemplate=restTemplateBuilder.build();
+        ResponseEntity<FakeProductServiceResponseDto> response=restTemplate.postForEntity(url,fakeProductServiceRequestDto, FakeProductServiceResponseDto.class);
+        return response.getBody();
     }
 }

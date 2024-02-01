@@ -1,11 +1,13 @@
 package com.projects.EComProductService.services;
 
 import com.projects.EComProductService.client.FakeStoreClient;
+import com.projects.EComProductService.dtos.FakeProductServiceRequestDto;
 import com.projects.EComProductService.dtos.FakeProductServiceResponseDto;
 import com.projects.EComProductService.dtos.ProductServiceRequestDto;
 import com.projects.EComProductService.dtos.ProductServiceResponseDto;
 import org.springframework.stereotype.Service;
 import static com.projects.EComProductService.mapper.DtoMapper.fakeProductServiceResponseDtoToProductServiceResponseDto;
+import static com.projects.EComProductService.mapper.DtoMapper.productServiceRequestDtoToFakeProductServiceRequestDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,9 @@ public class FakeStoreProductServiceImpl implements ProductService{
 
     @Override
     public ProductServiceResponseDto addProduct(ProductServiceRequestDto productServiceRequestDto) {
-        return null;
+        FakeProductServiceRequestDto fakeProductServiceRequestDto=productServiceRequestDtoToFakeProductServiceRequestDto(productServiceRequestDto);
+        ProductServiceResponseDto productServiceResponseDto=fakeProductServiceResponseDtoToProductServiceResponseDto(fakeStoreClient.addProduct(fakeProductServiceRequestDto));
+        return productServiceResponseDto;
     }
 
     @Override
