@@ -1,11 +1,15 @@
 package com.projects.EComProductService.client;
 
 import com.projects.EComProductService.dtos.FakeProductServiceResponseDto;
+import com.projects.EComProductService.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import com.projects.EComProductService.utils.ProductUtils.*;
+
+import static com.projects.EComProductService.utils.ProductUtils.isNull;
 
 @Component
 public class FakeStoreClient {
@@ -23,6 +27,9 @@ public class FakeStoreClient {
         RestTemplate restTemplate=restTemplateBuilder.build();
         String url=fakeStoreApiUrl+fakeStoreProductPath+"/"+id;
         ResponseEntity<FakeProductServiceResponseDto> response=restTemplate.getForEntity(url, FakeProductServiceResponseDto.class);
+        if(isNull(response.getBody())){
+            throw new ProductNotFoundException("Product not found");
+        }
         return response.getBody();
     }
 }
