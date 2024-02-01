@@ -44,7 +44,9 @@ public class FakeStoreProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ProductServiceResponseDto modifyProduct(ProductServiceRequestDto productServiceRequestDto) {
-        return null;
+    public ProductServiceResponseDto modifyProduct(int id,ProductServiceRequestDto productServiceRequestDto) {
+        FakeProductServiceRequestDto fakeProductServiceRequestDto=productServiceRequestDtoToFakeProductServiceRequestDto(productServiceRequestDto);
+        FakeProductServiceResponseDto fakeProductServiceResponseDto=fakeStoreClient.modifyProduct(id,fakeProductServiceRequestDto);
+        return fakeProductServiceResponseDtoToProductServiceResponseDto(fakeProductServiceResponseDto);
     }
 }

@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public ProductServiceResponseDto modifyProduct(ProductServiceRequestDto productServiceRequestDto) {
+    public ProductServiceResponseDto modifyProduct(int id,ProductServiceRequestDto productServiceRequestDto) {
         return null;
     }
 

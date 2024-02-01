@@ -9,5 +9,5 @@ public interface ProductService {
     public ProductServiceResponseDto getProduct(int id);
     public List<ProductServiceResponseDto> getProducts();
     public ProductServiceResponseDto addProduct(ProductServiceRequestDto productServiceRequestDto);
-    public ProductServiceResponseDto modifyProduct(ProductServiceRequestDto productServiceRequestDto);
+    public ProductServiceResponseDto modifyProduct(int id,ProductServiceRequestDto productServiceRequestDto);
 }

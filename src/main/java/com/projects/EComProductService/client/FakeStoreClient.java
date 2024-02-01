@@ -52,4 +52,11 @@ public class FakeStoreClient {
         ResponseEntity<FakeProductServiceResponseDto> response=restTemplate.postForEntity(url,fakeProductServiceRequestDto, FakeProductServiceResponseDto.class);
         return response.getBody();
     }
+
+    public FakeProductServiceResponseDto modifyProduct(int id,FakeProductServiceRequestDto fakeProductServiceRequestDto){
+        String url=fakeStoreApiUrl+fakeStoreProductPath+"/"+id;
+        RestTemplate restTemplate=restTemplateBuilder.build();
+        FakeProductServiceResponseDto response=restTemplate.patchForObject(url,fakeProductServiceRequestDto, FakeProductServiceResponseDto.class);
+        return response;
+    }
 }
