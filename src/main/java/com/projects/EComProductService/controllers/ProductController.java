@@ -29,11 +29,11 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<ProductServiceResponseDto> addProduct(ProductServiceRequestDto productServiceRequestDto){
+    public ResponseEntity<ProductServiceResponseDto> addProduct(@RequestBody ProductServiceRequestDto productServiceRequestDto){
         return ResponseEntity.ok(productService.addProduct(productServiceRequestDto));
     }
     @PatchMapping("/products/{id}")
-    public ResponseEntity<ProductServiceResponseDto> modifyProduct(@PathVariable("id") int id,ProductServiceRequestDto productServiceRequestDto){
+    public ResponseEntity<ProductServiceResponseDto> modifyProduct(@RequestBody ProductServiceRequestDto productServiceRequestDto,@PathVariable("id") int id){
         return ResponseEntity.ok(productService.modifyProduct(id,productServiceRequestDto));
     }
 
