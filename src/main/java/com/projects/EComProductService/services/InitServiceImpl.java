@@ -8,6 +8,7 @@ import com.projects.EComProductService.models.Category;
 import com.projects.EComProductService.models.Price;
 import com.projects.EComProductService.models.Product;
 import com.projects.EComProductService.repositories.CategoryRepo;
+import com.projects.EComProductService.repositories.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,13 @@ import java.util.List;
 public class InitServiceImpl implements InitService{
 
     private CategoryRepo categoryRepo;
+    private ProductRepo productRepo;
     private AuthorRepo authorRepo;
 
     @Autowired
-    public InitServiceImpl(CategoryRepo categoryRepo,AuthorRepo authorRepo1) {
+    public InitServiceImpl(CategoryRepo categoryRepo,ProductRepo productRepo1,AuthorRepo authorRepo1) {
         this.categoryRepo = categoryRepo;
+        productRepo=productRepo1;
         authorRepo=authorRepo1;
     }
 
@@ -45,16 +48,19 @@ public class InitServiceImpl implements InitService{
         iPhone.setDescription("Best phone ever!!");
         iPhone.setImageUrl("www.google.com/iPhone");
         iPhone.setPrice(iPhonePrice);
+        iPhone.setCategory(electronics);
 
         Product iPad=new Product();
         iPad.setTitle("iPad");
         iPad.setDescription("Best tab ever!!");
         iPad.setImageUrl("www.google.com/iPad");
         iPad.setPrice(iPadPrice);
+        iPad.setCategory(electronics);
 
         electronics.setProductList(List.of(iPhone,iPad));
+        Product product1=productRepo.save(iPhone);
+        Product product2=productRepo.save(iPad);
 
-        electronics=categoryRepo.save(electronics);
 
         Author author=new Author();
         author.setName("J K Rowling");

@@ -1,8 +1,6 @@
 package com.projects.EComProductService.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +11,8 @@ public class Product extends BaseModel{
     private String title;
     private String description;
     private String imageUrl;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Price price;
-//    @ManyToOne
-//    private Category category;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Category category;
 }

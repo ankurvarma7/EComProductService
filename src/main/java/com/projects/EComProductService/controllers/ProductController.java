@@ -3,6 +3,7 @@ package com.projects.EComProductService.controllers;
 import com.projects.EComProductService.dtos.ProductServiceRequestDto;
 import com.projects.EComProductService.dtos.ProductServiceResponseDto;
 import com.projects.EComProductService.services.ProductService;
+import com.projects.EComProductService.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -14,14 +15,20 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
+    private ProductServiceImpl productServiceImpl;
 
-    public ProductController(@Qualifier("fakeProdServiceImpl") ProductService productService1){
+    public ProductController(@Qualifier("prodServiceImpl") ProductService productService1,ProductServiceImpl productServiceImpl){
         productService=productService1;
+        this.productServiceImpl=productServiceImpl;
     }
 
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductServiceResponseDto> getProduct(@PathVariable("id") int id){
         return ResponseEntity.ok(productService.getProduct(id));
+    }
+    @GetMapping("/products/title/{title}")
+    public ResponseEntity<ProductServiceResponseDto> getProductByTitle(@PathVariable("title") String title){
+        return ResponseEntity.ok(productServiceImpl.getProductByTitle(title));
     }
     @GetMapping("/products")
     public ResponseEntity<List<ProductServiceResponseDto>> getProducts(){

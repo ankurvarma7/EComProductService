@@ -15,6 +15,6 @@ public class Author {
     private int id;
     private String name;
     private String email;
-    @OneToMany(mappedBy = "author",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Book> books;
 }

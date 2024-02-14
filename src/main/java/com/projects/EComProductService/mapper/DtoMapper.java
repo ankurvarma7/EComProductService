@@ -4,6 +4,7 @@ import com.projects.EComProductService.dtos.FakeProductServiceRequestDto;
 import com.projects.EComProductService.dtos.FakeProductServiceResponseDto;
 import com.projects.EComProductService.dtos.ProductServiceRequestDto;
 import com.projects.EComProductService.dtos.ProductServiceResponseDto;
+import com.projects.EComProductService.models.Product;
 
 public class DtoMapper {
     public static FakeProductServiceRequestDto productServiceRequestDtoToFakeProductServiceRequestDto(ProductServiceRequestDto productServiceRequestDto){
@@ -24,6 +25,17 @@ public class DtoMapper {
         productServiceResponseDto.setImage(fakeProductServiceResponseDto.getImage());
         productServiceResponseDto.setCategory(fakeProductServiceResponseDto.getCategory());
         productServiceResponseDto.setDescription(fakeProductServiceResponseDto.getDescription());
+        return productServiceResponseDto;
+    }
+
+    public static ProductServiceResponseDto productToProductServiceResponseDto(Product product){
+        ProductServiceResponseDto productServiceResponseDto=new ProductServiceResponseDto();
+        productServiceResponseDto.setId(product.getId());
+        productServiceResponseDto.setCategory(product.getCategory().getDescription());
+        productServiceResponseDto.setTitle(product.getTitle());
+        productServiceResponseDto.setPrice(product.getPrice().getAmount());
+        productServiceResponseDto.setImage(product.getImageUrl());
+        productServiceResponseDto.setDescription(product.getDescription());
         return productServiceResponseDto;
     }
 }

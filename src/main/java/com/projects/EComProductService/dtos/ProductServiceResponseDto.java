@@ -1,7 +1,10 @@
 package com.projects.EComProductService.dtos;
 
+import com.projects.EComProductService.models.Category;
+import com.projects.EComProductService.models.Price;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
